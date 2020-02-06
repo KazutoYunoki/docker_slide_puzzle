@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+
+<head>
+   <meta charset="utf-8">
+   <title>3x3 puzzle game</title>
+   <link href="../static/css/main.css" type="text/css" rel="stylesheet" media="all">
+   <script src="../static/js/jquery.min.js"></script>
+   <script>
+      var recordTimes = [{
+         {
+            ', '.join(record_times)
+         }
+      }];
+   </script>
+   <script type="text/javascript" src="../static/js/main.js"></script>
+</head>
+
+<body>
+
+   <div id="top_page">
+      <div class="top_wrapper">
+         <div class="title">
+            <h1>スライドパズル(3×3)</h1>
+         </div>
+         <div class="cat_img">
+            <img src="../static/images/cat2_300x300.png" alt="" width="200px" height="200px">
+         </div>
+      </div>
+      <div class="contents">
+         <ul>
+            <li>パズルゲームの定番、スライドパズルです</li>
+            <li>上記の猫の画像を揃えてください</li>
+            <li>クリアすると名前とクリア時間がランキング登録されます</li>
+         </ul>
+      </div>
+      <div style="margin-left:30%;margin-right:30%;">
+         <input id = "button" type="button" style="width:100%;padding:10px;font-size:30px;" value="さっそくはじめる" />
+
+      </div>
+   </div>
+
+   <div id="over_wrap">
+      <div>
+         <p name="timer"></p>
+      </div>
+
+      <div class="">
+         <ul id="game_images">
+            <li>
+               <ul id="puzzle">
+               </ul>
+            </li>
+            <li>
+               <img src="../static/images/cat2_300x300.png">
+            </li>
+         </ul>
+      </div>
+      <center class="start_reset_button">
+         <button id="start_reset_button" class="start_button" onClick="startResetButton()">
+            <span id="start" style="display: block">スタート</span>
+            <span id="reset" style="display: none">リセット</span>
+         </button>
+      </center>
+      <input type="button" value="cheat" onclick="cheat()">
+      <table>
+         <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Time</th>
+         </tr>
+         {% for result in results %}
+         <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ result['name'] }}</td>
+            <td>{{ result['record_time_str']}}</td>
+         </tr>
+         {% endfor %}
+      </table>
+   </div>
+</body>
+<script type="text/javascript">
+   $(function(){
+      $("#button").click(function(){
+         $("#top_page").css("display", "none");
+         $("#over_wrap").css("display","block");
+      });
+   });
+</script>
+
+</html>
